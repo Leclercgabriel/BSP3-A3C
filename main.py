@@ -16,13 +16,14 @@ def plot_learning_curve(x, scores, figure_file):
 
 if __name__ == "__main__":
     env = gym.make("LunarLander-v2")
+    index = input("index :") or "0"
     alpha = input("alpha (1e-4):") or 1e-4
     gamma = input("gamma (0.99):") or 0.99
-    agent = ActorCritic(alpha=float(alpha), gamma=float(gamma), action_space=env.action_space.n, a1=(input("a1 (86):")) or 86, a2=(input("a2 (32):")) or 32, c1=(input("c1 (86):")) or 86, c2=(input("c2 (32):")) or 32, l=(input("count limit:")) or 1, Async=(input("Async :")) or "A" )
+    agent = ActorCritic(alpha=float(alpha), gamma=float(gamma), action_space=env.action_space.n, a1=(input("a1 (86):")) or 86, a2=(input("a2 (32):")) or 32, c1=(input("c1 (86):")) or 86, c2=(input("c2 (32):")) or 32, l=(input("count limit:")) or 1, Async=(input("Async :")) or "A", index=index )
     n_games = 1500
     time = datetime.now()
 
-    filePath = "tmp/img/LunarLander"+"-"+str(time)+"-g"+str(agent.gamma)+"-a"+str(agent.alpha)+"-a1_"+str(agent.aD1_dims)+"-a2_"+str(agent.aD2_dims)+"-c1_"+str(agent.cD1_dims)+"-c2_"+str(agent.cD2_dims)+"-Async_"+agent.Async+"-LM_"+str(agent.countLimit)
+    filePath = "tmp/img"+index+"/LunarLander"+"-"+str(time)+"-g"+str(agent.gamma)+"-a"+str(agent.alpha)+"-a1_"+str(agent.aD1_dims)+"-a2_"+str(agent.aD2_dims)+"-c1_"+str(agent.cD1_dims)+"-c2_"+str(agent.cD2_dims)+"-Async_"+agent.Async+"-LM_"+str(agent.countLimit)
     figureFile = filePath
     highScore = env.reward_range[0]
     scoreHistory = []

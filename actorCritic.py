@@ -10,7 +10,7 @@ from tensorflow.keras.models import Model
 import gc
 from tensorflow.keras import backend as K
 class ActorCritic:
-    def __init__(self, alpha=0.01, gamma=0.99, action_space=4, observation_space=8, a1=64, a2=32, c1=64, c2=32, l=1, Async="A"):
+    def __init__(self, alpha=0.01, gamma=0.99, action_space=4, observation_space=8, a1=64, a2=32, c1=64, c2=32, l=1, Async="A", index="0"):
         super(ActorCritic, self).__init__()
         K.clear_session()
 
@@ -28,8 +28,8 @@ class ActorCritic:
   #      self.aGradient = []
    #     self.cGradient = []
 
-        self.actor_checkpoint_file = os.path.join("logs/actor")
-        self.critic_checkpoint_file = os.path.join("logs/critic")
+        self.actor_checkpoint_file = os.path.join("logs/"+index+"/actor")
+        self.critic_checkpoint_file = os.path.join("logs/"+index+"/critic")
 
         self.aD1_dims = a1
         self.aD2_dims = a2
