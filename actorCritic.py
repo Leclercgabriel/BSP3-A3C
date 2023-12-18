@@ -99,7 +99,6 @@ class ActorCritic:
         state1 = tf.convert_to_tensor([state1], dtype=tf.float64)
         reward = tf.convert_to_tensor(reward, dtype=tf.float64)
         with tf.GradientTape(persistent=True) as tape:
-            tape.reset()
             actionProba = self.Actor(state)
 
             V_value = self.Critic(state)
@@ -135,10 +134,4 @@ class ActorCritic:
                 self.count = 0
 
         del tape
-        del state
-        del state1
-        del reward
-        del actionProba
-        del V_value
-        del V_value1
         gc.collect()
